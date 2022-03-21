@@ -1,37 +1,22 @@
-import { useEffect, useState } from "react"
-import axios from 'axios'
-import { useFetch } from "./hooks/useFetch"
-
-type Repository = {
-  full_name: string;
-  description: string;
-}
+import {  Route, Routes } from "react-router-dom"
+import { Repo } from "./pages/Repo"
+import { Repos } from "./pages/Repos"
 
 
+function App (){
+  return(
 
-function App() {
-
-  const {data: repositories , isFething} = useFetch<Repository[]>('/users/Prg-maker/repos')
-
-
-  
-
-  return (
-    <h1>
       
-      {isFething && <p>Carregandoo.....</p>}
+      
+      <Routes>
+        <Route path="/" element={<Repos/>}/>
+        <Route path="/repo/*" element={<Repo/>}/>
 
-      {repositories?.map( repo => {
+      </Routes>
 
-      return(
-        <li key={repo.full_name}>
-          <strong>{repo.full_name}</strong>
-          <p>{repo.description}</p>
-      </li>
-      )
-   
-    })}</h1>
+
   )
 }
+
 
 export default App
